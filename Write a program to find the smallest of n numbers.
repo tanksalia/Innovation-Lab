@@ -1,0 +1,49 @@
+#include<stdio.h>
+struct min
+{
+    int n;
+    int a[10];
+    int k;
+    
+};
+
+struct min input()
+{
+    struct min f;
+    int i;
+    printf("Enter The Number Of Elements\n");
+    scanf("%d",&f.n);
+    printf("Enter The Numers\n");
+    for(i=0;i<f.n;i++)
+       {
+           scanf("%d",&f.a[i]);
+       }
+    return f;   
+}
+
+struct min compute(struct min f)
+{
+    int i;
+    f.k=f.a[0];
+    for(i=0;i<f.n;i++)
+    {
+        if(f.k>f.a[i])
+          {
+              f.k=f.a[i];
+          }
+    }
+    return f;
+}
+
+void output(struct min f)
+{
+    printf("The Smallest Number Is:%d",f.k);
+}
+int main()
+{
+    struct min f;
+    f=input();
+    f=compute(f);
+    output(f);
+}
+

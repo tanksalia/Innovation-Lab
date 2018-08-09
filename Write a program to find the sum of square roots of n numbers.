@@ -1,0 +1,46 @@
+#include<stdio.h>
+struct sum
+{
+    float a[10];
+    float sum;
+    int n;
+};
+
+struct sum input()
+{
+    struct sum s;
+    int i;
+    printf("Enter The Number Of Elements\n");
+    scanf("%d",&s.n);
+    printf("Enter The Numbers To Be Added\n");
+    for(i=0;i<s.n;i++)
+       { 
+           scanf("%f",&s.a[i]);
+       }
+    return s;
+}
+
+struct sum compute(struct sum s)
+{
+    s.sum=0;
+    int i;
+    for (i=0;i<s.n;i++)
+        {
+            s.sum=s.sum+sqrt(s.a[i]);
+        }
+    return s;    
+}
+
+void output(struct sum s)
+{
+    printf("The Sum Of Given Numbers Is :%f",s.sum);
+}
+
+int main()
+{
+    struct sum s;
+    s=input();
+    s=compute(s);
+    output(s);
+}
+

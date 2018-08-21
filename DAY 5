@@ -1,0 +1,61 @@
+#include<stdio.h>
+
+struct Fraction
+{
+    int numerator;
+    int denominator;
+}
+
+struct Fractions {
+     int n;
+     struct Fraction *a;
+}
+
+struct Fractions CreateArrayOfFractions(int n)
+{
+    struct Fractions f;
+    f.n=n;
+    f.a=malloc(n*sizeof(struct Fraction));
+    return f;
+}
+
+struct frac
+{
+    int num[100];
+    int den[100];
+    int i;
+    int j;
+    int n;
+}
+
+struct frac input()
+{
+    struct frac s;
+    printf("Enter The Number Of Fractions To Be Added\n");
+    scanf("%d",&s.n);
+    printf("Enter The Numerators\n");
+    for(s.i=0;s.i<(s.n*2);s.i++)
+       {
+           scanf("%d",num[s.i]);
+       }
+    printf("Enter The Denominators");
+    for(s.j=0;s.j<n;s.j++)
+       {
+           scanf("%d",&den[s.j]);
+       }
+    return s;   
+}
+
+struct frac compute()
+{
+    struct frac s;
+    
+}
+int main()
+{
+    struct frac s;
+    s=input();
+    s=compute(s);
+    output();
+    return 0;
+}

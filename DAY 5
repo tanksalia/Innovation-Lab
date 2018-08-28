@@ -1,61 +1,79 @@
 #include<stdio.h>
 
-struct Fraction
+struct fraction
 {
     int numerator;
     int denominator;
-}
+};
 
-struct Fractions {
+struct fractions 
+{
      int n;
-     struct Fraction *a;
+     struct fraction *a;
+     int num;
+     int den;
+};
+
+struct fractions input()
+{
+    struct fractions f;
+    int i;
+    printf("Enter The Number Of Fractions\n");
+    scanf("%d",&f.n);
+    f.a=malloc(f.n*sizeof(struct fraction));
+    for(i=0;i<f.n;i++)
+       {
+           printf("Enter The Numerator And Denominator of Fraction %d\n",i+1);
+           scanf("%d%d",&f.a[i].numerator,&f.a[i].denominator);
+       }
+    return f;   
 }
 
-struct Fractions CreateArrayOfFractions(int n)
+struct fractions compute(struct fractions f)
 {
-    struct Fractions f;
-    f.n=n;
-    f.a=malloc(n*sizeof(struct Fraction));
-    return f;
-}
-
-struct frac
-{
-    int num[100];
-    int den[100];
+   
+    
     int i;
     int j;
-    int n;
-}
-
-struct frac input()
-{
-    struct frac s;
-    printf("Enter The Number Of Fractions To Be Added\n");
-    scanf("%d",&s.n);
-    printf("Enter The Numerators\n");
-    for(s.i=0;s.i<(s.n*2);s.i++)
+    int gcd=0;
+    f.num=f.a[0].numerator;
+    f.den=f.a[0].denominator;
+    for(i=1;i<=(f.n-1);i++)
        {
-           scanf("%d",num[s.i]);
-       }
-    printf("Enter The Denominators");
-    for(s.j=0;s.j<n;s.j++)
-       {
-           scanf("%d",&den[s.j]);
-       }
-    return s;   
-}
-
-struct frac compute()
-{
-    struct frac s;
+            f.num=(f.num*f.a[i].denominator)+(f.a[i].numerator*f.den);
+            f.den=f.den*f.a[i].denominator;
+        }
+    if(f.num<f.den)
+      {
+          gcd=f.num;
+      }
+    else
+        {
+            gcd=f.den;
+        }
+    while(gcd>1)
+         {
+             if(f.num%gcd==0&&f.den%gcd==0)
+               {
+                   break;
+               }
+            gcd--;   
+         }
+    f.num=f.num/gcd;
+    f.den=f.den/gcd;
     
+    return f;   
 }
+
+void output(struct fractions f)
+{
+    printf("The Sum Of Give Fractions Are \n%d\n____\n%d",f.num,f.den);
+}
+
 int main()
 {
-    struct frac s;
-    s=input();
-    s=compute(s);
-    output();
-    return 0;
+    struct fractions f;
+    f=input();
+    f=compute(f);
+    output(f);
 }
